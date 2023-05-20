@@ -11,7 +11,7 @@ app.use(express.json());
 
 // Database
 const db = mysql.createConnection({
-    host: 'dpg-chkfrl64dadfmskdlu6g-a.frankfurt-postgres.render.com',
+    host: 'dpg-chkfrl64dadfmskdlu6g-a',
     user: 'user',
     password: 'tFfTZTQdujftoXtTYhQcUMhbYjtV8LRS',
     database: 'app_v5c8'

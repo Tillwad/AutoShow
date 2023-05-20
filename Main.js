@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const mysql = require('mysql');
+const { Pool } = require('pg');
 const session = require('express-session');
 const MySQLStore = require('express-mysql-session')(session);
 const Router = require('./Router');
@@ -10,18 +10,20 @@ app.use(express.static(path.join(__dirname, 'build')));
 app.use(express.json());
 
 // Database
-const db = mysql.createConnection({
-    host: 'dpg-chkfrl64dadfmskdlu6g-a',
+const db = new Pool({
     user: 'user',
+    host: 'dpg-chkfrl64dadfmskdlu6g-a.frankfurt-postgres.render.com',
+    database: 'app_v5c8',
     password: 'tFfTZTQdujftoXtTYhQcUMhbYjtV8LRS',
-    database: 'app_v5c8'
+    port: 5432,
 });
 
 db.connect(function (err) {
     console.log('Successful Connection!')
     if (err) {
         console.log('DB error');
-        throw err;
+        console.log(err)
+        // throw err;
         return false;
     }
 });

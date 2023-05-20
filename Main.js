@@ -16,13 +16,14 @@ const db = new Pool({
     database: 'app_v5c8',
     password: 'tFfTZTQdujftoXtTYhQcUMhbYjtV8LRS',
     port: 5432,
+    ssl: true,
 });
 
 db.connect(function (err) {
     console.log('Successful Connection!')
     if (err) {
         console.log('DB error');
-        console.log(err)
+        console.log('Error: ' + err)
         // throw err;
         return false;
     }

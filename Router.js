@@ -27,7 +27,7 @@ class Router {
             }
 
             let cols = [username];
-            db.query('SELECT * FROM user WHERE username = ? LIMIT 1', cols, (err, data, fields) => {
+            db.query('SELECT * FROM app_user WHERE username = $1 LIMIT 1', cols, (err, data, fields) => {
 
                 if (err) {
                     res.json({
@@ -36,17 +36,16 @@ class Router {
                     })
                     return;
                 }
-
-                if (data && data.length === 1) {
-                    bcrypt.compare(password, data[0].password, (bcrypt, verified) => {
+                if (data && data['rows'][0].username === username) {
+                    bcrypt.compare(password, data['rows'][0].password, (bcrypt, verified) => {
 
                         if (verified) {
-                            req.session.userID = data[0].id;
+                            req.session.userID = data['rows'][0].id;
 
                             res.json({
                                 success: true,
-                                username: data[0].username,
-                                colors: data[0].colors
+                                username: data['rows'][0].username,
+                                colors: data['rows'][0].colors
                             })
 
                             return;
@@ -97,8 +96,9 @@ class Router {
             if (req.session.userID) {
 
                 let cols = [req.session.userID];
-                db.query('SELECT * FROM user WHERE id = ? LIMIT 1', cols, (err, data, field) => {
+                db.query('SELECT * FROM app_user WHERE id = $1 LIMIT 1', cols, (err, data, field) => {
 
+                    data = data['rows']
                     if (data && data.length === 1) {
 
                         res.json({
@@ -111,7 +111,7 @@ class Router {
                         res.json({
                             success: false
                         })
-
+                        console.log('Err')
                     }
 
                 });
@@ -120,6 +120,7 @@ class Router {
                 res.json({
                     success: false
                 })
+                console.log('Err')
             }
         })
     }
@@ -143,9 +144,9 @@ class Router {
                 return;
             }
 
-            let cols = [username, bcrypt.hashSync(password, 9), email, "#000000,#000000,#000000,#000000,#000000,#000000,#000000,#000000"];
-
-            db.query('INSERT INTO user (id, username, password, email, colors) VALUES (NULL, ?, ?, ?, ?)', cols, (err, data, fields) => {
+            let cols = [username, bcrypt.hashSync(password, 9), email, '#000000,#000000,#000000,#000000,#000000,#000000,#000000,#000000'];
+            console.log("INSERT INTO app_user (username, password, email, colors) VALUES (?, ?, ?, ?)", cols)
+            db.query('INSERT INTO app_user (username, password, email, colors) VALUES ($1, $2, $3, $4)', cols, (err, data, fields) => {
                 if (err) {
                     console.log('Error Faild to Insert: ' + err)
                     res.json({
@@ -155,7 +156,7 @@ class Router {
                     return;
                 }
 
-
+                data = data['rows']
                 if (data && data.length === 1) {
                     res.json({
                         success: true,
@@ -168,11 +169,12 @@ class Router {
 
     save(app, db) {
         app.post('/save', (req, res) => {
-
+            console.log("Test");
             if (req.session.userID) {
                 console.log(req.body.colors)
                 let cols = [req.body.colors, req.session.userID];
-                db.query('UPDATE user SET colors = ? WHERE id = ? LIMIT 1', cols, (err, data, field) => {
+                console.log(cols)
+                db.query('UPDATE app_user SET colors = $1 WHERE id = $2 LIMIT 1', cols, (err, data, field) => {
                     
                     if(err) {
                         

@@ -12,9 +12,9 @@ app.use(express.json());
 // Database
 const db = new Pool({
     user: 'user',
-    host: 'dpg-chkfrl64dadfmskdlu6g-a.frankfurt-postgres.render.com',
+    host: '',
     database: 'app_v5c8',
-    password: 'tFfTZTQdujftoXtTYhQcUMhbYjtV8LRS',
+    password: '',
     port: 5432,
     ssl: true,
 });

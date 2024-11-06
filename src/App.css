@@ -1,0 +1,616 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    background: black;
+}
+
+header,
+nav {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    translate: -50%;
+    display: inline;
+}
+
+ul {
+    display: inline-block;
+    position: relative;
+    font-size: 1.5em;
+    color: rgb(255, 255, 255);
+    border-bottom: 1px solid gray;
+}
+
+ul:hover {
+    cursor: pointer;
+}
+
+ul::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+ul:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.new {
+    padding-right: 49vw;
+    animation: fadeIn 1s;
+}
+
+.old {
+    padding-left: 50vw;
+    animation: fadeIn 1s;
+}
+
+
+Canvas {
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.login {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    color: white;
+    translate: -50%;
+    cursor: pointer;
+    animation: fadeIn 1s;
+}
+
+
+.Loader {
+    color: white;
+    position: absolute;
+    top: 50%;
+    right: 50%;
+    translate: 50%;
+}
+
+.text {
+    position: absolute;
+    top: 0;
+    height: 10vh;
+    width: 25vw;
+    cursor: pointer;   
+}
+
+.prev {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    width: 25vw;
+    cursor: pointer;
+}
+
+.next {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 25vw;
+    
+}
+
+.next-text {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.503);
+    font-size: 4em;
+    top: 50%;
+    left: 50%;
+    translate: -50%;
+    cursor: normal;
+    user-select: none;
+}
+
+/* Test */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins");
+
+
+body {
+    display: flex;
+    background-color: #000000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: "Poppins", sans-serif;
+    overflow: hidden;
+}
+
+h1 {
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+h1.title {
+    font-size: 45px;
+    line-height: 45px;
+    margin: 0;
+    text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
+}
+
+p {
+    font-size: 14px;
+    font-weight: 100;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px;
+    text-shadow: 0 0 10px rgba(16, 64, 74, 0.5);
+}
+
+a {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+    margin: 15px 0;
+    transition: 0.3s ease-in-out;
+}
+
+a:hover {
+    color: #4bb6b7;
+}
+
+.content {
+    display: flex;
+    position: relative;
+    width: 50%;
+    height: 50px;
+    align-items: center;
+    justify-content: space-around;
+}
+
+button {
+    position: relative;
+    /* border-radius: 20px; */
+    border: 1px solid #000000;
+    background-color: #000000;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+    margin: 10px;
+    padding: 12px 80px;
+    letter-spacing: 1px;
+    text-transform: capitalize;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+button:hover {
+    letter-spacing: 3px;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
+
+button.ghost {
+    background-color: rgba(225, 225, 225, 0);
+    border: 0px solid #000000;
+    border-top: 3px solid gray;
+    border-bottom: 3px solid gray;
+    color: #ffffff;
+}
+
+button.ghost::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+button.ghost::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    top: 0;
+    left: 0;
+    background-color: rgb(255, 255, 255);
+    transform-origin: bottom left;
+    transition: transform 0.25s ease-out;
+}
+
+button.ghost:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom right;
+}
+
+button.ghost:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+button.ghost i {
+    position: absolute;
+    opacity: 0;
+    transition: 0.3s ease-in-out;
+}
+
+button.ghost i.register {
+    right: 70px;
+}
+
+button.ghost i.login {
+    left: 70px;
+}
+
+button.ghost:hover i.register {
+    right: 40px;
+    opacity: 1;
+}
+
+button.ghost:hover i.login {
+    left: 40px;
+    opacity: 1;
+}
+
+form {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 100px;
+    height: 50%;
+}
+
+form h2 {
+    position: absolute;
+    top: 5%;
+    right: 10%;
+    cursor: pointer;
+}
+
+input {
+    background-color: #eee;
+    /* border-radius: 10px; */
+    border: none;
+    padding: 12px 15px;
+    margin: 8px 0;
+    width: 100%;
+}
+
+.wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.container {
+    background-color: transparent;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    border: 2px solid red;
+}
+
+.form-container {
+    position: absolute;
+    top: 50%;
+    height: 100%;
+    translate: 0 -25%;
+    transition: all 0.6s ease-in-out;
+}
+
+.login-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.container.right-panel-active .login-container {
+    transform: translateX(100%);
+}
+
+.register-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+.container.right-panel-active .register-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: show 0.6s;
+}
+
+.madeby {
+    margin: 0;
+    position: absolute;
+    width: 40vw;
+    top: 90%;
+    left: 95%;
+    translate: -50%;
+    color: rgba(255, 255, 255, 0.174);
+    font-size: 1.75em;
+    z-index: 400;
+    cursor: pointer;
+}
+
+@keyframes show {
+
+    0%,
+    49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+
+    50%,
+    100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    translate: 0 50%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.container.right-panel-active .overlay-container {
+    transform: translate(-100%);
+}
+
+.overlay {
+    background: transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 50%;
+    width: 200%;
+    translate: 0 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+}
+
+.container.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.container.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+
+.switch input {
+    display: none;
+}
+
+.switch {
+    width: 60px;
+    height: 30px;
+    position: relative;
+}
+
+.slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 30px;
+    box-shadow: 0 0 0 2px #777, 0 0 4px #777;
+    cursor: pointer;
+    border: 4px solid transparent;
+    overflow: hidden;
+    transition: 0.2s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #777;
+    border-radius: 30px;
+    transform: translateX(-30px);
+    /*translateX(-(w-h))*/
+    transition: 0.2s;
+}
+
+input:checked+.slider:before {
+    transform: translateX(30px);
+    /*translateX(w-h)*/
+    background-color: limeGreen;
+}
+
+input:checked+.slider {
+    box-shadow: 0 0 0 2px limeGreen, 0 0 8px limeGreen;
+}
+
+.switch200 .slider:before {
+    width: 200%;
+    transform: translateX(-82px);
+    /*translateX(-(w-h))*/
+}
+
+.switch200 input:checked+.slider:before {
+    background-color: red;
+}
+
+.switch200 input:checked+.slider {
+    box-shadow: 0 0 0 2px red, 0 0 8px red;
+}
+
+.wrapper {
+    animation: fadeIn 1s;
+}
+
+.top {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 25vh;
+    z-index: 10;
+}
+
+.bottom {
+    position: absolute;
+    bottom: 0;
+    width: 100vw;
+    height: 25vh;
+    z-index: 10;
+}
+
+.App {
+    width: 100vw
+}
+
+.picker {
+    position: absolute !important;
+    top: 74px;
+    left: 70px;
+    width: 90px !important;
+    height: 90px !important;
+}
+
+.current {
+    position: absolute;
+    top: 43px;
+    left: 140px;
+    padding: 0;
+    margin: 40px;
+    font-size: 5em;
+    font-weight: 600;
+    line-height: 0.7em;
+    letter-spacing: -4px;
+    color: #ffffff;
+}
+
+.logout {
+    position: absolute;
+    top: 10%;
+    right: -2.5%;
+    color: white;
+    translate: -50%;
+    cursor: pointer;
+    animation: fadeIn 1s;
+}
+
+.save {
+    position: absolute;
+    top: 80%;
+    left: 50%;
+    color: white;
+    translate: -50%;
+    cursor: pointer;
+    animation: fadeIn 1s;
+}
+.loader {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    translate: -50% 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: inline-block;
+    border: 10px solid;
+    border-color: rgba(255, 255, 255, 0.15) rgba(255, 255, 255, 0.25) rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.5);
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+  }
+  
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  } 
